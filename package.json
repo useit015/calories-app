@@ -1,0 +1,22 @@
+{
+	"name": "root",
+	"private": true,
+	"author": {
+		"name": "Oussama nahiz",
+		"email": "useit015@gmail.com"
+	},
+	"devDependencies": {
+		"concurrently": "^7.0.0",
+		"husky": "^4.3.8",
+		"lerna": "^3.20.2"
+	},
+	"workspaces": [
+		"packages/*"
+	],
+	"scripts": {
+		"start:db": "docker-compose up -d mongodb",
+		"start:front": "yarn workspace toptal-calories-app start",
+		"start:back": "yarn workspace toptal-calories-api start",
+		"start:all": "concurrently -k -n 'back,front' -c 'green,blue' 'yarn start:back' 'yarn start:front'"
+	}
+}
